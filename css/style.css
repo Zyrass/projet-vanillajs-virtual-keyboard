@@ -1,0 +1,300 @@
+* {
+    outline: none;
+}
+
+body {
+    max-height: 100vh;
+}
+
+::placeholder {
+    color: darkred;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    word-break: keep-all;
+    padding: 25px;
+    font-size: 16px;
+}
+
+/* 
+    ------------------------------------------------------------------
+    Badge perso
+    ------------------------------------------------------------------
+*/
+
+.infoPerso, .test {
+    position: absolute;
+    transform: rotate(-20deg);
+}
+
+
+.infoPerso {
+    top:30px;
+    left: 60px;
+    z-index: 2;
+    white-space: pre-line;
+    font-weight: 700;
+    color: #eee;
+    text-shadow: #000 1px 1px 1px;
+}
+
+.test {
+    filter: drop-shadow(0 0 10px #333);
+    box-shadow: 0 0 10px #000 inset;
+    top: 10px;
+    left: 10px;
+    width: 200px;
+    height: 200px;
+    border: 10px solid black;
+    border-top: darkslateblue 10px solid;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    background-color: #333;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 
+    ------------------------------------------------------------------
+    Header
+    ------------------------------------------------------------------
+*/
+
+header {
+    margin: 20px auto;
+    min-width: 360px;
+    max-width: 800px;
+}
+
+h1 {
+    text-align: center;
+}
+
+header > p {
+    white-space: pre-line;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+}
+
+/* 
+    ------------------------------------------------------------------
+    Résultat affiché
+    ------------------------------------------------------------------
+*/
+.affichage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 100%;
+    min-height: 150px;
+    max-height: 600px;
+    margin: 15px auto;
+}
+.result {
+    flex: 1;
+    margin: 10px 25px;
+    min-width: 800px;
+    max-height: 150px;
+    max-height: 600px;
+    background-color: #333;
+}
+.result pre::before {
+    content: "> ";
+    color: #eee;
+}
+.result h1 {
+    color: skyblue;
+    text-align: center;
+    letter-spacing: 2px;
+}
+.result pre {
+    color: lightgreen;
+    padding: 10px 0 10px 40px;
+    font-size: 20px;
+}
+textarea {
+    min-width: 25%;
+    max-width: 50%;
+    min-height: 150px;
+    max-height: 600px;
+}
+
+/* 
+    ------------------------------------------------------------------
+    Clavier
+    ------------------------------------------------------------------
+*/
+.clavier {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    box-shadow: 0 0 20px #000 inset;
+
+    width: 82%;
+    margin: 30px auto;
+    background-color: #696969;
+    border-radius: 10px;
+    padding: 10px 5px;
+}
+
+.clavier p {
+    flex-wrap: wrap;
+    font-size: 12px;
+    letter-spacing: 3px;
+    word-spacing: 4px;
+    color: #eee;
+}
+
+span small {
+    color: lightcoral;
+}
+
+.keyboard_azerty {
+    width: 93%;
+}
+
+/**
+ * BUTTONS 
+ **/
+button {
+    padding: 5px;
+    margin: 3px;
+    height: 75px;
+    width: 75px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 2px solid #333;
+    position: relative;
+    transition: all .35s ease-in-out;
+}
+button span {
+    position: absolute
+}
+
+button span:nth-child(1) {
+    top: 25px;
+    left: 20px;
+}
+button span:nth-child(2) {
+    top: 12px;
+    left: 45px;
+}
+button span:nth-child(3) {
+    top: 40px;
+    left: 45px;
+}
+
+
+button:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5) inset;
+}
+button.verr_maj,
+button.btn_alt_gr,
+button.btn_shift {
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5) inset;
+    color: #eee;
+}
+
+button.clear,
+button.tab,
+button.caps,
+button.return,
+button.un,
+button.enter {
+    width: 200px;
+}
+button.shift,
+button.ctrl {
+    width: 225px;
+}
+
+button.enter {
+    float: right;
+    height: 155px;
+    right: 2px;
+    width: 175px;
+}
+
+button.return.big,
+button.shift.big {
+    width: 300px;
+}
+button.ctrl.small {
+    width: 100px;
+}
+button.espace {
+    width: 500px;
+}
+
+
+
+button.shift {
+    background-color: darkred;
+}
+button.alt_gr {
+    background-color: #3A8EBA;
+}
+button.caps {
+    background-color: darkslateblue;
+}
+
+span.with_shift {
+    color: darkred;
+    font-weight: 600;
+}
+span.with_caps {
+    color: darkslateblue;
+    font-weight: 600;
+}
+
+button.enter span.arrow_enter {
+    top: 25%;
+    left: 40%;
+    font-size: 60px;
+
+}
+
+button.alt_gr span {
+    left: 8px;
+}
+span.with_alt_gr {
+    color: darkcyan;
+}
+
+
+img {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+span img {
+    left: -8px;
+}
+span img:last-child {
+    left : 16px;
+}
+
+button.menu span img {
+    left: 0px;
+    width: 30px;
+    height: 30px;;
+}
+
+.arrow_up,
+.arrow_right,
+.arrow_down,
+.arrow_left {
+    background-color: lightgoldenrodyellow;
+}
+
+

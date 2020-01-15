@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Clavier By Alain</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="test"></div>
+        <span class="infoPerso">
+            Alain Guillon 
+            06 22 63 79 24
+
+            Développeur Web
+            Junior
+
+            Disponible à Lyon
+        </span>
+
+        <header>
+            <h1>Reproduction d'un clavier Azerty en Vanilla JS</h1>
+            <p>J'ai reproduit un clavier pour pratiquer le javaScript (VanillaJS). <strong>Je sais que je ne respecte pas les bonnes pratiques dans le sens où je me répète à 90% du temps.</strong>
+            
+            <em>J'insiste sur un point important : <strong>Je suis débutant</strong>. Mais pour le moment le résultat est lui plutôt sympatique et surtout, fonctionnel.</em>
+                
+            <strong>Attention, je ne suis en aucun cas contre le faite de l'améliorer.</strong>
+            </p>
+        </header>
+
+        <section id="clavier" class="clavier">
+
+            <section class="keyboard_azerty">
+                <button class="btn_exposant">
+                    <span>²</span>
+                </button>
+                    
+                <button class="btn_esperluette_un">
+                    <span>&</span>
+                    <span class="with_shift">1</span>
+                </button>
+                
+                <button class="btn_eAccentAigue_deux_tilde">
+                    <span>é</span>
+                    <span class="with_shift">2</span>
+                    <span class="with_alt_gr">~</span>
+                </button>
+
+                <button class="btn_doubleQueote_trois_dieze">
+                    <span>"</span>
+                    <span class="with_shift">3</span>
+                    <span class="with_alt_gr">#</span>
+                </button>
+
+                <button class="btn_simpleQuote_quatre_accolandeOuvrante">
+                    <span>'</span>
+                    <span class="with_shift">4</span>
+                    <span class="with_alt_gr">{</span>
+                </button>
+
+                <button class="btn_parentheseOuvante_cinq_crochetOuvrant">
+                    <span>(</span>
+                    <span class="with_shift">5</span>
+                    <span class="with_alt_gr">[</span>
+                </button>
+
+                <button class="btn_tiret_six_barreVerticale">
+                    <span>-</span>
+                    <span class="with_shift">6</span>
+                    <span class="with_alt_gr">|</span>
+                </button>
+
+                <button class="btn_eAccentGrave_sept_backtite">
+                    <span>è</span>
+                    <span class="with_shift">7</span>
+                    <span class="with_alt_gr">`</span>
+                </button>
+
+                <button class="btn_underscore_huit_antiSlashe">
+                    <span>_</span>
+                    <span class="with_shift">8</span>
+                    <span class="with_alt_gr">\</span>
+                </button>
+
+                <button class="btn_cCedille_neuf_chapeauChinois">
+                    <span>ç</span>
+                    <span class="with_shift">9</span>
+                    <span class="with_alt_gr">^</span>
+                </button>
+
+                <button class="btn_aAccent_zero_arobase">
+                    <span>à</span>
+                    <span class="with_shift">0</span>
+                    <span class="with_alt_gr">@</span>
+                </button>
+
+                <button class="btn_parentheseFermante_degree_crochetFermant">
+                    <span>)</span>
+                    <span class="with_shift">°</span>
+                    <span class="with_alt_gr">]</span>
+                </button>
+
+                <button class="btn_egale_plus_accoladeFermante">
+                    <span>=</span>
+                    <span class="with_shift">+</span>
+                    <span class="with_alt_gr">}</span>
+                </button>
+
+                <button class="return big btn_backspace">
+                    <span>Retour chariot ( &#x21E6; )</span>
+                </button>
+
+
+
+
+
+                <button class="tab btn_tabulation">
+                    <span>Tabulation ( &#x21C4; )</span>
+                </button>
+
+                <button class="btn_aA">
+                    <span>a</span>
+                    <span class="with_caps">A</span>
+                </button>
+
+                <button class="arrow_up btn_zZ">
+                    <span>z</span>
+                    <span class="with_caps">Z</span>
+                    <span>&#x2191;</span>
+                </button>
+
+                <button class="btn_eE">
+                    <span>e</span>
+                    <span class="with_caps">E</span>
+                    <span class="with_alt_gr">€</span>
+                </button>
+
+                <button class="btn_rR">
+                    <span>r</span>
+                    <span class="with_caps">R</span>
+                </button>
+
+                <button class="btn_tT">
+                    <span>t</span>
+                    <span class="with_caps">T</span>
+                </button>
+
+                <button class="btn_yY">
+                    <span>y</span>
+                    <span class="with_caps">Y</span>
+                </button>
+
+                <button class="btn_uU">
+                    <span>u</span>
+                    <span class="with_caps">U</span>
+                </button>
+
+                <button class="btn_iI">
+                    <span>i</span>
+                    <span class="with_caps">I</span>
+                </button>
+
+                <button class="btn_oO">
+                    <span>o</span>
+                    <span class="with_caps">O</span>
+                </button>
+
+                <button class="btn_pP">
+                    <span>p</span>
+                    <span class="with_caps">P</span>
+                </button>
+
+                <button class="btn_accentCirconflexe_tremat">
+                    <span>^</span>
+                    <span class="with_shift">¨</span>
+                </button>
+
+                <button class="btn_dollars_livres_symboleMonetaire">
+                    <span>$</span>
+                    <span class="with_shift">£</span>
+                    <span class="with_alt_gr">¤</span>
+                </button>
+
+                <button class="enter btn_enter">
+                    <span>Entrer</span>
+                    <span></span>
+                    <span class=arrow_enter>&#x21B2;</span>
+                </button>
+
+
+
+
+                <button class="caps btn_verr_maj">
+                    <span>Verr Maj A</span>
+                </button>
+
+                <button class="arrow_left btn_qQ">
+                    <span>q</span>
+                    <span class="with_caps">Q</span>
+                    <span>&#x2190;</span>
+                </button>
+
+                <button class="arrow_down btn_sS">
+                    <span>s</span>
+                    <span class="with_caps">S</span>
+                    <span>&#x2193;</span>
+                </button>
+
+                <button class="arrow_right btn_dD">
+                    <span>d</span>
+                    <span class="with_caps">D</span>
+                    <span>&#x2192;</span>
+                </button>
+
+                <button class="btn_fF">
+                    <span>f</span>
+                    <span class="with_caps">F</span>
+                </button>
+
+                <button class="btn_gG">
+                    <span>g</span>
+                    <span class="with_caps">G</span>
+                </button>
+
+                <button class="btn_hH">
+                    <span>h</span>
+                    <span class="with_caps">H</span>
+                </button>
+
+                <button class="btn_jJ">
+                    <span>j</span>
+                    <span class="with_caps">J</span>
+                </button>
+
+                <button class="btn_kK">
+                    <span>k</span>
+                    <span class="with_caps">K</span>
+                </button>
+
+                <button class="btn_lL">
+                    <span>l</span>
+                    <span class="with_caps">L</span>
+                </button>
+
+                <button class="btn_mM">
+                    <span>m</span>
+                    <span class="with_caps">M</span>
+                </button>
+
+                <button class="btn_uAccent_pourcentage">
+                    <span>ù</span>
+                    <span class="with_shift">%</span>
+                </button>
+
+                <button class="btn_asterix_micro">
+                    <span>*</span>
+                    <span class="with_shift">µ</span>
+                </button>
+
+
+
+
+                <button class="shift">
+                    <span>Shift ( &#x21EB; )</span>
+                </button>
+
+                <button class="btn_plusgrandQue_plusPetitQue">
+                    <span><</span>
+                    <span class="with_shift">></span>
+                </button>
+
+                <button class="btn_wW">
+                    <span>w</span>
+                    <span class="with_caps">W</span>
+                </button>
+
+                <button class="btn_xX">
+                    <span>x</span>
+                    <span class="with_caps">X</span>
+                </button>
+
+                <button class="btn_cC">
+                    <span>c</span>
+                    <span class="with_caps">C</span>
+                </button>
+
+                <button class="btn_vV">
+                    <span>v</span>
+                    <span class="with_caps">V</span>
+                </button>
+
+                <button class="btn_bB">
+                    <span>b</span>
+                    <span class="with_caps">B</span>
+                </button>
+
+                <button class="btn_nN">
+                    <span>n</span>
+                    <span class="with_caps">N</span>
+                </button>
+
+                <button class="btn_virgule_interrogation">
+                    <span>,</span>
+                    <span class="with_shift">?</span>
+                </button>
+
+                <button class="btn_pointVirgule_point">
+                    <span>;</span>
+                    <span class="with_shift">.</span>
+                </button>
+
+                <button class="btn_deuxPoints_slashe">
+                    <span>:</span>
+                    <span class="with_shift">/</span>
+                </button>
+
+                <button class="btn_exclamation_modele">
+                    <span>!</span>
+                    <span class="with_shift">§</span>
+                </button>
+
+                <button class="shift">
+                    <span>Shift ( &#x21EB; )</span>
+                </button>
+
+
+
+
+                <button class="ctrl">
+                    <span>Ctrl</span>
+                </button>
+
+                <button>
+                    <span><img src="assets/images/windows.png" alt="Logo Windows" /> <img src="assets/images/apple.png" alt="Logo Apple" /></span>
+                </button>
+
+                <button>
+                    <span>Alt</span>
+                </button>
+
+                <button class="espace btn_espace">
+                    <span>Espace</span>
+                </button>
+
+                <button class="alt_gr">
+                    <span>Alt Gr.</span>
+                </button>
+
+                <button>
+                    <span>FN</span>
+                </button>
+
+                <button class="menu">
+                    <span><img src="assets/images/menu.png" alt="Icone Menu"></span>
+                </button>
+
+                <button class="ctrl">
+                    <span>Ctrl</span>
+                </button>
+
+                <p>Volontairement, les touches Shift(s) ne permettent pas de créer les majuscules.<br />
+                En effet je préfère laisser cette fonctionnalitée avec la touche "Verr Maj A" aussi connu sous le nom de Caps Lock.</p>
+
+            </section>
+
+        </section>
+
+        <section id="affichage" class="affichage">
+            <textarea name="message" id="message" cols="120" rows="14" placeholder="Je tiens aussi à remercier Mr GASTON formateur sur la plateforme d'UDEMY pour son aide précieuse sur quelques petits problèmes que j'ai pu rencontrer."></textarea>
+            <section id="result" class="result">
+                <h1>Résultat </h1>
+                <hr />
+                <pre>
+
+                </pre>
+            </section>
+        </section>
+
+
+        <script src="js/script.js"></script>
+    </body>
+</html>
