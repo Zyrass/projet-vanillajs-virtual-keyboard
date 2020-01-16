@@ -1,201 +1,456 @@
+:root {
+    --text: #333
+    
+    --key: #60a3bc;
+    --key-maj: #0a3d62;
+    --key-shift: #3c6382;
+    --key-alt-gr: #82ccdd;
+
+    --small: #e55039;
+    --strong: #eb2f06;
+    --title: #0c2461;    
+}
+
 * {
-    outline: none!important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    color: var(--text);
 }
 
-body {
+html {
+    font-size: 62.5%;
+}
+
+body  {
     max-height: 100vh;
+    position: relative;
 }
 
-::placeholder {
-    color: darkred;
+h1, h2 {
+    margin-bottom: 1rem;
+    text-align: center;
     letter-spacing: 2px;
-    word-spacing: 4px;
-    word-break: keep-all;
-    padding: 25px;
-    font-size: 16px;
-}
-
-/* 
-    ------------------------------------------------------------------
-    Badge perso
-    ------------------------------------------------------------------
-*/
-
-.infoPerso, .test {
-    position: absolute;
-    transform: rotate(-20deg);
-}
-
-
-.infoPerso {
-    top:25px;
-    left: 45px;
-    z-index: 2;
-    white-space: pre-line;
-    font-weight: 300;
-    color: #eee;
-    text-shadow: #000 1px 1px 1px;
-}
-
-.test {
-    filter: drop-shadow(0 0 10px #333);
-    box-shadow: 0 0 10px #000 inset;
-    top: 10px;
-    left: 10px;
-    width: 200px;
-    height: 200px;
-    border: 10px solid black;
-    border-top: darkslateblue 10px solid;
-    border-radius: 50%;
-    animation: spin 2s linear infinite;
-    background-color: #333;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* 
-    ------------------------------------------------------------------
-    Header
-    ------------------------------------------------------------------
-*/
-
-header {
-    margin: 20px auto;
-    min-width: 360px;
-    max-width: 800px;
+    text-transform: uppercase;
+    color: var(--title)
 }
 
 h1 {
-    text-align: center;
-    font-size: 28px;
+    margin-top: 2rem;
+    font-size: 3rem;
+}
+h2 {
+    font-size: 2rem;
 }
 
-header > p {
-    white-space: pre-line;
-    letter-spacing: 2px;
-    word-spacing: 2px;
+p {
+    padding: 1rem;
+    font-size: 1.6rem;
+}
+
+small {
+    margin-top: 1rem;
+    display: block;
+    text-align: right;
+    font-size: 1.4rem;
+    color: var(--small);
+}
+
+strong {
+    color: var(--strong)
+}
+
+.info_perso p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    letter-spacing: 0.2rem;
 }
 
 /* 
     ------------------------------------------------------------------
-    Résultat affiché
+    Information personnel
+    ------------------------------------------------------------------
+*/
+.container {
+    position: relative;
+}
+
+/* 
+    ------------------------------------------------------------------
+    container_information
+    ------------------------------------------------------------------
+*/
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+/* 
+    ------------------------------------------------------------------
+    description & affichage
+    ------------------------------------------------------------------
+*/
+.description, .affichage {
+    min-height: 30rem;
+    margin: 0 2rem;
+}
+
+/* 
+    ------------------------------------------------------------------
+    description
+    ------------------------------------------------------------------
+*/
+.description {
+    min-width: 40rem;
+    max-width: 60rem;
+}
+
+.description > p {
+    white-space: pre-line;
+    letter-spacing: 0.2rem;
+    word-spacing: 0.2rem;
+}
+
+/* 
+    ------------------------------------------------------------------
+    affichage
     ------------------------------------------------------------------
 */
 .affichage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    min-width: 100%;
-    min-height: 150px;
-    max-height: 600px;
-    margin: 15px auto;
+    flex-grow: 1;
+    cursor: not-allowed;
 }
-.result {
-    flex: 1;
-    margin: 10px 25px;
-    min-width: 800px;
-    max-height: 150px;
-    max-height: 600px;
+.affichage > pre {
+    margin: 1rem;
     background-color: #333;
+    height: 28rem;
+    border-radius: 0.3rem;
 }
-.result pre::before {
+.affichage > pre {
+    color: lightgreen;
+    padding: 1.8rem;
+    font-size: 2.2rem;
+}
+
+.affichage > pre::before {
     content: "> ";
     color: #eee;
-}
-.result h1 {
-    color: skyblue;
-    text-align: center;
-    letter-spacing: 2px;
-}
-.result pre {
-    color: lightgreen;
-    padding: 10px 0 10px 40px;
-    font-size: 20px;
-}
-textarea {
-    min-width: 25%;
-    max-width: 50%;
-    min-height: 150px;
-    max-height: 600px;
 }
 
 /* 
     ------------------------------------------------------------------
-    Clavier
+    container_keyboard
     ------------------------------------------------------------------
 */
-.clavier {
+.container_keyboard {
+    box-shadow: 0 0 3rem #000 inset, 0rem 0rem 1rem #000;
+    max-width: 70vw;
+    margin: 3rem auto 0;
+    padding: 1rem;
+    border-radius: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-
-    box-shadow: 0 0 20px #000 inset;
-
-    width: 84%;
-    margin: 30px auto;
-    background-color: #696969;
-    border-radius: 10px;
-    padding: 10px 5px;
-}
-
-.clavier p {
-    flex-wrap: wrap;
-    font-size: 12px;
-    letter-spacing: 3px;
-    word-spacing: 4px;
-    color: #eee;
-}
-
-span small {
-    color: lightcoral;
+    background-color: lightgrey;
 }
 
 .keyboard_azerty {
-    width: 93%;
-}
-
-/**
- * BUTTONS 
- **/
-button {
-    padding: 5px;
-    margin: 3px;
-    height: 75px;
-    width: 75px;
-    font-size: 20px;
-    border-radius: 10px;
-    border: 2px solid #333;
     position: relative;
-    transition: all .35s ease-in-out;
-    color: chocolate;
-}
-button span {
-    position: absolute
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Placement des boutons ligne 1 */
+.keyboard_line1 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn_exposant {
+    order: 1;
+}
+.btn_esperluette_un {
+    order: 2;
+}
+.btn_eAccentAigue_deux_tilde {
+    order: 3;
+}
+.btn_doubleQueote_trois_dieze {
+    order: 4;
+}
+.btn_simpleQuote_quatre_accolandeOuvrante {
+    order: 5;
+}
+.btn_parentheseOuvante_cinq_crochetOuvrant {
+    order: 6;
+}
+.btn_tiret_six_barreVerticale {
+    order: 7;
+}
+.btn_eAccentGrave_sept_backtite {
+    order: 8;
+}
+.btn_underscore_huit_antiSlashe {
+    order: 9;
+}
+.btn_cCedille_neuf_chapeauChinois {
+    order: 10;
+}
+.btn_aAccent_zero_arobase {
+    order: 11;
+}
+.btn_parentheseFermante_degree_crochetFermant {
+    order: 12;
+}
+.btn_egale_plus_accoladeFermante {
+    order: 13;
+}
+.btn_backspace {
+    order: 14;
+    width: 23.4rem;
+    flex-grow: 1;
+}
+
+/* Placement des boutons ligne 2 */
+.keyboard_line2 {
+    display: flex;
+    justify-content: flex-start;
+}
+.btn_tabulation {
+    order: 15;
+    width: 170px;
+}
+.btn_aA {
+    order: 16;
+}
+.btn_zZ {
+    order: 17;
+}
+.btn_eE {
+    order: 18;
+}
+.btn_rR {
+    order: 19;
+}
+.btn_tT {
+    order: 20;
+}
+.btn_yY {
+    order: 21;
+}
+.btn_uU {
+    order: 22;
+}
+.btn_iI {
+    order: 23;
+}
+.btn_oO {
+    order: 24;
+}
+.btn_pP {
+    order: 25;
+}
+.btn_accentCirconflexe_tremat {
+    order: 26;
+}
+.btn_dollars_livres_symboleMonetaire {
+    order: 27;
+}
+
+/* Placement du bouton ligne 2 & 3 */
+.btn_enter {
+    order: 28;
+    position: absolute;
+    float: right;
+    height: 15.4rem;
+    right: 0.2rem;
+    width: 137px;
+}
+
+/* Placement des boutons ligne 3 */
+.keyboard_line3 {
+    clear: both;
+    display: flex;
+    justify-content: flex-start;
+}
+.btn_verr_maj {
+    order: 29;
+    width: 170px;
+    background-color: darkorchid;
+    color: lightgoldenrodyellow;
+}
+.btn_qQ {
+    order: 30;
+}
+.btn_sS {
+    order: 31;
+}
+.btn_dD {
+    order: 32;
+}
+.btn_fF {
+    order: 33;
+}
+.btn_gG {
+    order: 34;
+}
+.btn_hH {
+    order: 35;
+}
+.btn_jJ {
+    order: 36;
+}
+.btn_kK {
+    order: 37;
+}
+.btn_lL {
+    order: 38;
+}
+.btn_mM {
+    order: 39;
+}
+.btn_uAccent_pourcentage {
+    order: 40;
+}
+.btn_asterix_micro {
+    order: 41;
+}
+
+/* Placement des boutons ligne 4 */
+.keyboard_line4 {
+    display: flex;
+    justify-content: space-evenly;
+}
+.shift-left {
+    order: 42;
+    width: 150px;
+    flex-grow: 1;
+    background-color: crimson;
+    color: lightgray;
+}
+.btn_plusgrandQue_plusPetitQue {
+    order: 43;
+}
+.btn_wW {
+    order: 44;
+}
+.btn_xX {
+    order: 45;
+}
+.btn_cC {
+    order: 46;
+}
+.btn_vV {
+    order: 47;
+}
+.btn_bB {
+    order: 48;
+}
+.btn_nN {
+    order: 49;
+}
+.btn_virgule_interrogation {
+    order: 50;
+}
+.btn_pointVirgule_point {
+    order: 51;
+}
+.btn_deuxPoints_slashe {
+    order: 52;
+}
+.btn_exclamation_modele {
+    order: 53;
+}
+.shift-right {
+    order: 54;
+    width: 200px;
+    flex-grow: 1;
+    background-color: crimson;
+    color: lightgray;
+}
+
+/* Placement des boutons ligne 5 */
+.keyboard_line5 {
+    display: flex;
+    justify-content: space-evenly;
+}
+.ctrl-left {
+    order: 55;
+    width: 150px;
+}
+.system {
+    order: 56;
+}
+
+.alt {
+    order: 57;
+}
+.btn_espace {
+    order: 58;
+    width: 46%;
+    flex: 2 1 auto;
+}
+.btn_alt_gr {
+    order: 59;
+    background-color: lightskyblue;
+}
+.fn {
+    order: 60;
+}
+.menu {
+    order: 61;
+}
+.ctrl-right {
+    order: 62;
+    width: 150px;
+}
+
+/* 
+    ------------------------------------------------------------------
+    Styles des boutons
+    ------------------------------------------------------------------
+*/
+
+/* Edition du contenu des boutons */
+
+button {
+    position: relative;
+    margin: 0.2rem;
+    height: 7.5rem;
+    width: 7.5rem;
+    font-size: 2rem;
+    border-radius: 0.8rem;
+    border: 2px solid #333;
+    transition: all .15s ease-in-out;
+    color: var(--text);
+    background-color: #fff;
+}
+
+/* Positionnement de l'affichage du contenu d'un bouton */
+button span {
+    position: absolute;
+}
 button span:nth-child(1) {
-    top: 25px;
-    left: 20px;
+    top: 2.5rem;
+    left: 2.0rem;
 }
 button span:nth-child(2) {
-    top: 12px;
-    left: 45px;
+    top: 1.2rem;
+    left: 4.5rem;
 }
 button span:nth-child(3) {
-    top: 40px;
-    left: 45px;
+    top: 4.0rem;
+    left: 4.5rem;
 }
 
-
+/* Effet sur les boutons */
 button:hover {
     cursor: pointer;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5) inset;
@@ -203,103 +458,60 @@ button:hover {
 button:focus {
     box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.5) inset;
 }
-button.verr_maj,
-button.btn_alt_gr,
-button.btn_shift {
-    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5) inset;
-    color: #eee;
+
+/* Taille de la flêche du bouton entrer */
+.arrow_enter {
+    font-size: 10rem;
 }
 
-button.clear,
-button.tab,
-button.caps,
-button.return,
-button.un,
-button.enter {
-    width: 200px;
-}
-button.shift,
-button.ctrl {
-    width: 225px;
-}
-
-button.enter {
-    float: right;
-    height: 155px;
-    right: 2px;
-    width: 175px;
-}
-
-button.return.big,
-button.shift.big {
-    width: 300px;
-}
-button.ctrl.small {
-    width: 100px;
-}
-button.espace {
-    width: 500px;
-}
-
-
-
-button.shift {
-    background-color: darkred;
-}
-button.alt_gr {
-    background-color: #3A8EBA;
-}
-button.caps {
-    background-color: darkslateblue;
-}
-
-span.with_shift {
-    color: darkred;
-    font-weight: 600;
-}
-span.with_caps {
-    color: darkslateblue;
-    font-weight: 600;
-}
-
-button.enter span.arrow_enter {
-    top: 25%;
-    left: 40%;
-    font-size: 60px;
-
-}
-
-button.alt_gr span {
-    left: 8px;
-}
+/* ALT_GR */
 span.with_alt_gr {
-    color: darkcyan;
+    color: darkblue;
 }
 
 
-img {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-}
-span img {
-    left: -8px;
-}
-span img:last-child {
-    left : 16px;
+.with_caps {
+    color: darkorchid;
 }
 
-button.menu span img {
-    left: 0px;
-    width: 30px;
-    height: 30px;;
+/* SHIFT */
+span.with_shift {
+    color: crimson;
 }
 
+/* Couleur des FLECHES */
 .arrow_up,
 .arrow_right,
 .arrow_down,
 .arrow_left {
-    background-color: lightgoldenrodyellow;
+    background-color: lightpink;
 }
 
+/* Button logo images */
+.system div {
+    display: flex;
+    justify-content: space-around;
+}
+img {
+    width: 20px;
+    height: 20px;
+}
 
+.verr_maj_selected {
+    color: indigo;
+}
+.alt_gr_selected {
+    color: darkblue;
+}
+.shift_selected {
+    color: yellow;
+}
+
+.reset {
+    position: absolute;
+    right: 5rem;
+    width: 30rem;
+    height: 3rem;
+    background-color: lightskyblue;
+    color: darkblue;
+}

@@ -4,11 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /**
      * =========================================================================
-     *       CONSTANTE CODES DES TOUCHES
+     *       TOUCHES DU CLAVIER
      * =========================================================================
      **/
-    const codeTouche = {
-        "alpha": {
+
+    const codeTouche = [
+        {
             "aA": {"a": 97, "A": 65},
             "zZ": {"z": 122, "Z": 90},
             "eE": {"e": 101, "E": 69},
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             "bB": {"b": 98, "B": 66},
             "nN": {"n": 110, "N": 78}            
         },
-        "ponctuation": {
+        {
             ",?": {",": 188, "?": 188},
             ";.": {";": 186, ".": 110},
             ":/": {":": 190, "/": 111},
@@ -70,7 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
             "ctrl": {"ctrl": 17},
             "caps_lock": {"caps_lock": 20},
         }
-    }
+    ]
+
     /**
      * =========================================================================
      *       OBJETS TOUCHES
@@ -268,55 +270,47 @@ document.addEventListener('DOMContentLoaded', function() {
     *       CONSTANTE DOM / VARIABLES DOM
     * =========================================================================
     **/
-    const textarea = document.getElementById('message');
-    let pre = document.querySelector('#result pre');
+    let pre = document.querySelector('#affichage > pre');
     
     /**
      * =========================================================================
-     *       EVENT CLICK AFIN D'ASSIGNER UNE CLASSE AVEC TOGGLE
-     *       VERR MAJ A
+     *       EVENT CLICK AFIN D'ASSIGNER UNE TOGGLE CLASSE SUR VERR MAJ A
      * =========================================================================
      **/
     const btn_verr_maj = document.querySelector('.btn_verr_maj');
-    btn_verr_maj.addEventListener('click', function() {
-        btn_verr_maj.classList.toggle('verr_maj');
+    btn_verr_maj.addEventListener('click', () => {
+        btn_verr_maj.classList.toggle('verr_maj_selected');
     });
 
     /**
      * =========================================================================
-     *       EVENT CLICK AFIN D'ASSIGNER UNE CLASSE AVEC TOGGLE
-     *       ALT_GR
+     *       EVENT CLICK AFIN D'ASSIGNER UNE TOGGLE CLASSE SUR ALT_GR
      * =========================================================================
      **/
-    const btn_alt_gr = document.querySelector('.alt_gr');
-    btn_alt_gr.addEventListener("click", function() {
-        btn_alt_gr.classList.toggle('btn_alt_gr');
+    const btn_alt_gr = document.querySelector('.btn_alt_gr');
+    btn_alt_gr.addEventListener("click", () => {
+        btn_alt_gr.classList.toggle('alt_gr_selected');
     });
 
     /**
      * =========================================================================
-     *       EVENT CLICK AFIN D'ASSIGNER UNE CLASSE AVEC TOGGLE
-     *       SHIFT
+     *       EVENT CLICK AFIN D'ASSIGNER UNE TOGGLE CLASSE SUR SHIFT
      * =========================================================================
      **/
-    const btn_shift = document.querySelectorAll('.shift');
+    const btn_shift = document.querySelectorAll('.btn_shift');
     
     btn_shift[0].addEventListener('click', function() {
-        this.classList.toggle('btn_shift');
-    });        
-    
-    btn_shift[1].addEventListener('click', function () {
-        this.classList.toggle('btn_shift');
+        this.classList.toggle("shift_selected");
+        if (btn_shift[1].hasAttribute("class")) {
+            btn_shift[1].classList.remove("shift_selected");
+        }
     });
-
-    /**
-     * =========================================================================
-     *       EVENT KEYPRESS
-     * =========================================================================
-     **/
-    textarea.addEventListener('keypress', function (event) {
-        textarea.innerHTML += event.key;
-        pre.innerHTML = textarea.innerHTML;
+    
+    btn_shift[1].addEventListener('click', function() {
+        this.classList.toggle("shift_selected");
+        if (btn_shift[0].hasAttribute("class")) {
+            btn_shift[0].classList.remove("shift_selected");
+        }
     });
 
     /**
@@ -324,545 +318,658 @@ document.addEventListener('DOMContentLoaded', function() {
      *       EVENT CLICK
      * =========================================================================
      **/
-
     // touche A
-    touche_aA.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.a_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.a;
-            pre.innerHTML = textarea.innerHTML;
+    touche_aA.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.a_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.a;
         }
     });
 
     // Touche Z
-    touche_zZ.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.z_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.z;
-            pre.innerHTML = textarea.innerHTML;
+    touche_zZ.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.z_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.z;
         }
     });
 
     // Touche E
-    touche_eE.addEventListener("click", function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_verr_maj.classList.contains('verr_maj')) {
+    touche_eE.addEventListener("click", () => {
+        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_verr_maj.classList.contains('verr_maj_selected')) {
             textarea.innerHTML += ponctuation.euro;
             pre.innerHTML = textarea.innerHTML;
-        } else if (btn_verr_maj.classList.contains('verr_maj') && !btn_alt_gr.classList.contains('btn_alt_gr')) {
-            textarea.innerHTML += majuscule.e_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj') && !btn_alt_gr.classList.contains('btn_alt_gr')) {
-            textarea.innerHTML += minuscule.e;
-            pre.innerHTML = textarea.innerHTML;
+        } else if (btn_verr_maj.classList.contains('verr_maj_selected') && !btn_alt_gr.classList.contains('btn_alt_gr')) {
+            pre.innerHTML += majuscule.e_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected') && !btn_alt_gr.classList.contains('btn_alt_gr')) {
+            pre.innerHTML += minuscule.e
         }
     });
 
     // Touche R
-    touche_rR.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.r_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.r;
-            pre.innerHTML = textarea.innerHTML;
+    touche_rR.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.r_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.r;
         }
     });
 
     // Touche T
-    touche_tT.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.t_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.t;
-            pre.innerHTML = textarea.innerHTML;
+    touche_tT.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.t_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.t;
         }
     });
 
     // Touche Y
-    touche_yY.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.y_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.y;
-            pre.innerHTML = textarea.innerHTML;
+    touche_yY.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.y_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.y;
         }
     });
 
     // Touche U
-    touche_uU.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.u_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.u;
-            pre.innerHTML = textarea.innerHTML;
+    touche_uU.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.u_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.u;
         }
     });
 
     // Touche I
-    touche_iI.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.i_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.i;
-            pre.innerHTML = textarea.innerHTML;
+    touche_iI.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.i_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.i;
         }
     });
 
     // Touche O
-    touche_oO.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.o_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.o;
-            pre.innerHTML = textarea.innerHTML;
+    touche_oO.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.o_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.o;
         }
     });
 
     // Touche P
-    touche_pP.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.p_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.p;
-            pre.innerHTML = textarea.innerHTML;
+    touche_pP.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.p_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.p
         }
     });
 
     // Touche Q
-    touche_qQ.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.q_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.q;
-            pre.innerHTML = textarea.innerHTML;
+    touche_qQ.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.q_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.q;
         }
     });
 
     // Touche S
-    touche_sS.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.s_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.s;
-            pre.innerHTML = textarea.innerHTML;
+    touche_sS.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.s_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.s;
         }
     });
 
     // Touche D
-    touche_dD.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.d_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.d;
-            pre.innerHTML = textarea.innerHTML;
+    touche_dD.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.d_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.d;
         }});
 
     // Touche F
-    touche_fF.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.f_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.f;
-            pre.innerHTML = textarea.innerHTML;
+    touche_fF.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.f_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.f;
         }});
 
     // Touche G
-    touche_gG.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.g_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.g;
-            pre.innerHTML = textarea.innerHTML;
+    touche_gG.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.g_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.g;
         }});
 
     // Touche H
-    touche_hH.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.h_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.h;
-            pre.innerHTML = textarea.innerHTML;
+    touche_hH.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.h_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.h;
         }});
 
     // Touche J
-    touche_jJ.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.j_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.j;
-            pre.innerHTML = textarea.innerHTML;
+    touche_jJ.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.j_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.j;
         }});
 
     // Touche K
-    touche_kK.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.k_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.k;
-            pre.innerHTML = textarea.innerHTML;
+    touche_kK.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.k_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.k;
         }});
 
     // Touche L
-    touche_lL.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.l_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.l;
-            pre.innerHTML = textarea.innerHTML;
+    touche_lL.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.l_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.l;
         }});
 
     // Touche M
-    touche_mM.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.m_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.m;
-            pre.innerHTML = textarea.innerHTML;
+    touche_mM.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.m_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.m;
         }});
 
     // Touche W
-    touche_wW.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.w_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.w;
-            pre.innerHTML = textarea.innerHTML;
+    touche_wW.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.w_maj
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.w;
         }});
 
     // Touche X
-    touche_xX.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.x_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.x;
-            pre.innerHTML = textarea.innerHTML;
+    touche_xX.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.x_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.x;
         }});
 
     // Touche C
-    touche_cC.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.c_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.c;
-            pre.innerHTML = textarea.innerHTML;
+    touche_cC.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.c_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.c;
         }});
 
     // Touche V
-    touche_vV.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.v_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.v;
-            pre.innerHTML = textarea.innerHTML;
+    touche_vV.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.v_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.v;
         }});
 
     // Touche B
-    touche_bB.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.b_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.b;
-            pre.innerHTML = textarea.innerHTML;
+    touche_bB.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.b_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.b;
         }});
 
     // Touche N
-    touche_nN.addEventListener("click", function () {
-        if (btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += majuscule.n_maj;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_verr_maj.classList.contains('verr_maj')) {
-            textarea.innerHTML += minuscule.n;
-            pre.innerHTML = textarea.innerHTML;
+    touche_nN.addEventListener("click", () => {
+        if (btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += majuscule.n_maj;
+        } else if (!btn_verr_maj.classList.contains('verr_maj_selected')) {
+            pre.innerHTML += minuscule.n;
         }
     });
 
 
-    touche_espace.addEventListener("click", function () {
-        textarea.innerHTML += ponctuation.espace;
-        pre.innerHTML = textarea.innerHTML;
+    touche_espace.addEventListener("click", () => {
+        pre.innerHTML += ponctuation.espace;
     });
-    touche_enter.addEventListener("click", function () {
-        textarea.innerHTML += ponctuation.enter;
-        pre.innerHTML = textarea.innerHTML;
+    touche_enter.addEventListener("click", () => {
+        pre.innerHTML += ponctuation.enter;
     });
-    touche_exposant.addEventListener("click", function () {
-        textarea.innerHTML += ponctuation.exposant;
-        pre.innerHTML = textarea.innerHTML;
+    touche_exposant.addEventListener("click", () => {
+        pre.innerHTML += ponctuation.exposant;
     });
-    touche_tabulation.addEventListener("click", function () {
-        textarea.innerHTML += ponctuation.tabulation;
-        pre.innerHTML = textarea.innerHTML;
+    touche_tabulation.addEventListener("click", () => {
+        pre.innerHTML += ponctuation.tabulation;
     });
-    touche_backspace.addEventListener("click", function () {
-        textarea.innerHTML = textarea.innerHTML.substr(0, textarea.innerHTML.length - 1);
-        pre.innerHTML = textarea.innerHTML;
+    touche_backspace.addEventListener("click", () => {
+        pre.innerHTML = pre.innerHTML.substr(0, pre.innerHTML.length - 1);
     });
 
-    touche_plusGrandQue_plusPetitQue.addEventListener('click', function () {
-        if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.plus_grand_que;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.plus_petit_que;
-            pre.innerHTML = textarea.innerHTML;
-        }
-    });
-
-    touche_virgule_interrogation.addEventListener('click', function () {
-        if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.interrogation;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.virgule;
-            pre.innerHTML = textarea.innerHTML;
+    touche_plusGrandQue_plusPetitQue.addEventListener('click', () => {
+        if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.plus_grand_que;
+        } else if (
+            !btn_shift[0].classList.contains('shift_selected') ||
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.plus_petit_que;
         }
     });
 
-    touche_pointVirgule_point.addEventListener('click', function () {
-        if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.point;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.point_virgule;
-            pre.innerHTML = textarea.innerHTML;
+    touche_virgule_interrogation.addEventListener('click', () => {
+        if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.interrogation;
+        } else if (
+            !btn_shift[0].classList.contains('shift_selected') ||
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.virgule;
         }
     });
 
-    touche_deuxPoints_slashe.addEventListener('click', function () {
-        if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.slashe;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.deux_points;
-            pre.innerHTML = textarea.innerHTML;
+    touche_pointVirgule_point.addEventListener('click', () => {
+        if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.point;
+        } else if (
+            !btn_shift[0].classList.contains('shift_selected') ||
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.point_virgule;
         }
     });
 
-    touche_exclamation_modele.addEventListener('click', function () {
-        if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.modele;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.exclamation;
-            pre.innerHTML = textarea.innerHTML;
+    touche_deuxPoints_slashe.addEventListener('click', () => {
+        if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.slashe;
+        } else if (
+            !btn_shift[0].classList.contains('shift_selected') ||
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.deux_points;
         }
     });
 
-    touche_uAccent_pourcentage.addEventListener('click', function () {
-        if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.pourcentage;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.u_accent;
-            pre.innerHTML = textarea.innerHTML;
-        }
-    });
-    touche_asterix_micro.addEventListener('click', function () {
-        if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.micro;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.asterix;
-            pre.innerHTML = textarea.innerHTML;
-        }
-    });
-    touche_accentCirconflexe_tremat.addEventListener('click', function () {
-        if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.tremat;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.accent_circonflexe;
-            pre.innerHTML = textarea.innerHTML;
-        }
-    });
-    touche_dollars_livres_symboleMonetaire.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.symbole_monetaire;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.livres;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.dollars;
-            pre.innerHTML = textarea.innerHTML;
-        } 
-    });
-
-    touche_egale_plus_accoladeFermante.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.accolade_fermante;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.plus;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.egale;
-            pre.innerHTML = textarea.innerHTML;
+    touche_exclamation_modele.addEventListener('click', () => {
+        if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.modele;
+        } else if (
+            !btn_shift[0].classList.contains('shift_selected') ||
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.exclamation;
         }
     });
 
-    touche_parentheseFermante_degree_crochetFermant.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.crochet_fermant;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.degree;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.parenthese_fermante;
-            pre.innerHTML = textarea.innerHTML;
+    touche_uAccent_pourcentage.addEventListener('click', () => {
+        if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.pourcentage;
+        } else if (
+            !btn_shift[0].classList.contains('shift_selected') ||
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.u_accent;
         }
     });
 
-    touche_aAccent_zero_arobase.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.arobase;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += numerique.zero;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.a_accentGrave;
-            pre.innerHTML = textarea.innerHTML;
+    touche_asterix_micro.addEventListener('click', () => {
+        if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.micro;
+        } else if (
+            !btn_shift[0].classList.contains('shift_selected') ||
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.asterix;
         }
     });
 
-    touche_cCedille_neuf_chapeauChinois.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.accent_circonflexe;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += numerique.neuf;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.c_cedille;
-            pre.innerHTML = textarea.innerHTML;
+    touche_accentCirconflexe_tremat.addEventListener('click', () => {
+        if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.tremat;
+        } else if (
+            !btn_shift[0].classList.contains('shift_selected') ||
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.accent_circonflexe;
         }
     });
 
-    touche_underscore_huit_antiSlashe.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.anti_slashe;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += numerique.huit;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.underscore;
-            pre.innerHTML = textarea.innerHTML;
+    touche_dollars_livres_symboleMonetaire.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.symbole_monetaire;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.livres;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.dollars;
         }
     });
 
-    touche_eAccentGrave_sept_backtite.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.backtite;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += numerique.sept;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.e_accentGrave;
-            pre.innerHTML = textarea.innerHTML;
+    touche_egale_plus_accoladeFermante.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.accolade_fermante;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.plus;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.egale;
         }
     });
 
-    touche_tiret_six_barreVerticale.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.barre_verticale;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += numerique.six;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.tiret;
-            pre.innerHTML = textarea.innerHTML;
+    touche_parentheseFermante_degree_crochetFermant.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.crochet_fermant;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.degree;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.parenthese_fermante;
         }
     });
 
-    touche_parentheseOuvante_cinq_crochetOuvrant.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.crochet_ouvrant;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += numerique.cinq;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.parenthese_ouvrante;
-            pre.innerHTML = textarea.innerHTML;
+    touche_aAccent_zero_arobase.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.arobase;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += numerique.zero;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.a_accentGrave;
         }
     });
 
-    touche_simpleQuote_quatre_accolandeOuvrante.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.accolade_ouvrante;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += numerique.quatre;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.simple_quote;
-            pre.innerHTML = textarea.innerHTML;
+    touche_cCedille_neuf_chapeauChinois.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.accent_circonflexe;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += numerique.neuf;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.c_cedille;
         }
     });
 
-    touche_doubleQueote_trois_dieze.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.dieze;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += numerique.trois;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.double_quote;
-            pre.innerHTML = textarea.innerHTML;
+    touche_underscore_huit_antiSlashe.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.anti_slashe;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += numerique.huit;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.underscore;
         }
     });
 
-    touche_eAccentAigue_deux_tilde.addEventListener('click', function () {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_shift[0].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.tilde;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += numerique.deux;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.e_accentAigue;
-            pre.innerHTML = textarea.innerHTML;
+    touche_eAccentGrave_sept_backtite.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.backtite;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += numerique.sept;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.e_accentGrave;
         }
     });
 
-    touche_esperluette_un.addEventListener('click', function () {
-        if (btn_shift[0].classList.contains('btn_shift') || btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += numerique.un;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (!btn_shift[0].classList.contains('btn_shift') || !btn_shift[1].classList.contains('btn_shift')) {
-            textarea.innerHTML += ponctuation.esperluette;
-            pre.innerHTML = textarea.innerHTML;
+    touche_tiret_six_barreVerticale.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.barre_verticale;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += numerique.six;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.tiret;
+        }
+    });
+
+    touche_parentheseOuvante_cinq_crochetOuvrant.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.crochet_ouvrant;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += numerique.cinq;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.parenthese_ouvrante;
+        }
+    });
+
+    touche_simpleQuote_quatre_accolandeOuvrante.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.accolade_ouvrante;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += numerique.quatre;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.simple_quote;
+        }
+    });
+
+    touche_doubleQueote_trois_dieze.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.dieze;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += numerique.trois;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.double_quote;
+        }
+    });
+
+    touche_eAccentAigue_deux_tilde.addEventListener('click', () => {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.tilde;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += numerique.deux;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.e_accentAigue;
+        }
+    });
+
+    touche_esperluette_un.addEventListener('click', () => {
+        if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += numerique.un;
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
+            pre.innerHTML += ponctuation.esperluette;
         }
     });
 });
+
+
+const btnReset = document.querySelector("#reset");
+btnReset.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const preReset = document.querySelector("#pre");
+
+    preReset.innerHTML = "";
+})

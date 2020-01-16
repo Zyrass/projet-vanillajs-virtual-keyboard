@@ -1,0 +1,45 @@
+/* 
+    ------------------------------------------------------------------
+    Badge perso
+    ------------------------------------------------------------------
+*/
+
+.infoPerso, .test {
+    position: absolute;
+    transform: rotate(-20deg);
+}
+
+
+.infoPerso {
+    top:25px;
+    left: 45px;
+    z-index: 2;
+    white-space: pre-line;
+    font-weight: 300;
+    color: #eee;
+    text-shadow: #000 1px 1px 1px;
+}
+
+.test {
+    filter: drop-shadow(0 0 10px #333);
+    box-shadow: 0 0 10px #000 inset;
+    top: 10px;
+    left: 10px;
+    width: 200px;
+    height: 200px;
+    border: 10px solid black;
+    border-top: darkslateblue 10px solid;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    background-color: #333;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
