@@ -338,12 +338,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Touche E
     touche_eE.addEventListener("click", () => {
-        if (btn_alt_gr.classList.contains('btn_alt_gr') && !btn_verr_maj.classList.contains('verr_maj_selected')) {
-            textarea.innerHTML += ponctuation.euro;
-            pre.innerHTML = textarea.innerHTML;
-        } else if (btn_verr_maj.classList.contains('verr_maj_selected') && !btn_alt_gr.classList.contains('btn_alt_gr')) {
+        if (
+            btn_alt_gr.classList.contains('alt_gr_selected') &&
+            !btn_shift[0].classList.contains('shift_selected') &&
+            !btn_shift[1].classList.contains('shift_selected')
+        ) {
+            pre.innerHTML += ponctuation.euro;
+        } else if (
+            btn_shift[0].classList.contains('shift_selected') ||
+            btn_shift[1].classList.contains('shift_selected') &&
+            !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
             pre.innerHTML += majuscule.e_maj;
-        } else if (!btn_verr_maj.classList.contains('verr_maj_selected') && !btn_alt_gr.classList.contains('btn_alt_gr')) {
+        } else if (
+            (
+                !btn_shift[0].classList.contains('shift_selected') ||
+                !btn_shift[1].classList.contains('shift_selected') 
+            ) && !btn_alt_gr.classList.contains('alt_gr_selected')
+        ) {
             pre.innerHTML += minuscule.e
         }
     });
