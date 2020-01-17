@@ -400,6 +400,7 @@ strong {
 .btn_alt_gr {
     order: 59;
     background-color: lightskyblue;
+    padding-right: 8rem;
 }
 .fn {
     order: 60;
