@@ -1,0 +1,224 @@
+
+
+/* Placement des boutons ligne 1 */
+.btn_exposant {
+  order: 1;
+}
+.btn_esperluette_un {
+  order: 2;
+}
+.btn_eAccentAigue_deux_tilde {
+  order: 3;
+}
+.btn_doubleQueote_trois_dieze {
+  order: 4;
+}
+.btn_simpleQuote_quatre_accolandeOuvrante {
+  order: 5;
+}
+.btn_parentheseOuvante_cinq_crochetOuvrant {
+  order: 6;
+}
+.btn_tiret_six_barreVerticale {
+  order: 7;
+}
+.btn_eAccentGrave_sept_backtite {
+  order: 8;
+}
+.btn_underscore_huit_antiSlashe {
+  order: 9;
+}
+.btn_cCedille_neuf_chapeauChinois {
+  order: 10;
+}
+.btn_aAccent_zero_arobase {
+  order: 11;
+}
+.btn_parentheseFermante_degree_crochetFermant {
+  order: 12;
+}
+.btn_egale_plus_accoladeFermante {
+  order: 13;
+}
+.btn_backspace {
+  order: 14;
+  flex-grow: 1;
+}
+
+/* Placement des boutons ligne 2 */
+main .container__keyboard-azerty-line2 {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  position: relative;
+}
+.btn_tabulation {
+  order: 15;
+  min-width: 170px;
+}
+.btn_aA {
+  order: 16;
+}
+.btn_zZ {
+  order: 17;
+}
+.btn_eE {
+  order: 18;
+}
+.btn_rR {
+  order: 19;
+}
+.btn_tT {
+  order: 20;
+}
+.btn_yY {
+  order: 21;
+}
+.btn_uU {
+  order: 22;
+}
+.btn_iI {
+  order: 23;
+}
+.btn_oO {
+  order: 24;
+}
+.btn_pP {
+  order: 25;
+}
+.btn_accentCirconflexe_tremat {
+  order: 26;
+}
+.btn_dollars_livres_symboleMonetaire {
+  order: 27;
+}
+
+/* Placement du bouton ligne 2 & 3 */
+.btn_enter {
+  order: 28;
+
+}
+
+/* Placement des boutons ligne 3 */
+main .container__keyboard-azerty-line3 {
+  /* clear: both; */
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.btn_qQ {
+  order: 30;
+}
+.btn_sS {
+  order: 31;
+}
+.btn_dD {
+  order: 32;
+}
+.btn_fF {
+  order: 33;
+}
+.btn_gG {
+  order: 34;
+}
+.btn_hH {
+  order: 35;
+}
+.btn_jJ {
+  order: 36;
+}
+.btn_kK {
+  order: 37;
+}
+.btn_lL {
+  order: 38;
+}
+.btn_mM {
+  order: 39;
+}
+.btn_uAccent_pourcentage {
+  order: 40;
+}
+.btn_asterix_micro {
+  order: 41;
+}
+
+/* Placement des boutons ligne 4 */
+main .container__keyboard-azerty-line4 {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.btn_plusgrandQue_plusPetitQue {
+  order: 43;
+}
+.btn_wW {
+  order: 44;
+}
+.btn_xX {
+  order: 45;
+}
+.btn_cC {
+  order: 46;
+}
+.btn_vV {
+  order: 47;
+}
+.btn_bB {
+  order: 48;
+}
+.btn_nN {
+  order: 49;
+}
+.btn_virgule_interrogation {
+  order: 50;
+}
+.btn_pointVirgule_point {
+  order: 51;
+}
+.btn_deuxPoints_slashe {
+  order: 52;
+}
+.btn_exclamation_modele {
+  order: 53;
+}
+
+/* Placement des boutons ligne 5 */
+main .container__keyboard-azerty-line5 {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.ctrl-left {
+  order: 55;
+  width: 150px;
+}
+.system {
+  order: 56;
+}
+
+.alt {
+  order: 57;
+}
+.btn_espace {
+  order: 58;
+  width: 46%;
+  flex-grow: 1;
+}
+
+.fn {
+  order: 60;
+}
+.menu {
+  order: 61;
+}
+.ctrl-right {
+  order: 62;
+  width: 150px;
+}
+
+
+
+

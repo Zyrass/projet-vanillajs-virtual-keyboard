@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
      *       TOUCHES DU CLAVIER
      * =========================================================================
      **/
-
     const codeTouche = [
         {
             "aA": {"a": 97, "A": 65},
@@ -270,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
     *       CONSTANTE DOM / VARIABLES DOM
     * =========================================================================
     **/
-    let pre = document.querySelector('#affichage > pre');
+    let pre = document.querySelector('pre');
     
     /**
      * =========================================================================
